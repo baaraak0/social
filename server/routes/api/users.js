@@ -72,4 +72,21 @@ router.post('/users', function(req, res, next){
   }).catch(next);
 });
 
+router.post('/users/setCoords', auth.required, function(req, res, next){
+	User.findById(req.payload.id).then(function(user){
+		if(!user){ return res.sendStatus(401); }
+
+		if(typeof req.body.latitude !== 'undefined' && typeof req.body.longitude !== 'undefined'){
+			user.location = {
+				latitude: req.body.latitude,
+                longitude: req.body.longitude
+			};
+		}
+
+		return user.save().then(function(){
+			return res.json({user: user.toAuthJSON()});
+		});
+	}).catch(next);
+});
+
 module.exports = router;

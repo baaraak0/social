@@ -26,6 +26,28 @@ export default class userModel {
         });
     }
 
+
+    static sendUserLocation(coords) {
+        return new Promise((resolve, reject) => {
+
+            const ajaxPromise = AjaxWrapper.executeAjax('POST',
+                EXTERNAL_SERVER_URL + '/users/setCoords',
+				coords);
+            ajaxPromise.then((data) => {
+                try {
+					console.log(data)
+                    resolve(data);
+                }
+                catch (error) {
+                    reject(error)
+                }
+
+            }).catch(() => {
+                reject({success: false});
+            });
+        });
+    }
+
     /**
      * Get all the items
      * @returns {Object} object that hold the items data

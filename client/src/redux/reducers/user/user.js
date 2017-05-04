@@ -37,6 +37,11 @@ const global = (state = initialState, action) => {
             _state['viewPostData'] = action.data.data
             return _state;
 
+        case 'SET_COORDS':
+            _state['userCoords']['latitude'] = action.data.latitude
+            _state['userCoords']['longitude'] = action.data.longitude
+            return _state;
+
         case 'REGISTER_ACCOUNT':
             if (action.data.errors !== undefined) {
                 _state['registrationError'] = action.data.errors

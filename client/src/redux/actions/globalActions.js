@@ -12,7 +12,6 @@ export function getAllPosts() {
 		globalModel.getAllItems()
 			.then((data) => {
 				try {
-					console.log(data)
 					dispatch(setAllItems(data));
 				}
 				catch (error) {

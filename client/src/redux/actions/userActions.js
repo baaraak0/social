@@ -11,6 +11,11 @@ export const userLoggingFailed = (data) => ({
 	data
 });
 
+export const setCoords = (data) => ({
+	type: 'SET_COORDS',
+	data
+});
+
 export const registerAccount = (data) => ({
 	type: 'REGISTER_ACCOUNT',
 	data
@@ -123,8 +128,27 @@ export function getPostBySlug(slug) {
 		userModel.getPostBySlugName(slug)
 			.then((data) => {
 				try {
-					console.log(data)
 					dispatch(createPostSuccess(data));
+				}
+				catch (error) {
+					console.log(error)
+				}
+			});
+	};
+}
+
+export function setCoordsToStore(coords) {
+	return dispatch => {
+		dispatch(setCoords(coords))
+	};
+}
+
+export function setUserLocation(coords) {
+	return dispatch => {
+		userModel.sendUserLocation(coords)
+			.then((data) => {
+				try {
+					console.log('send user location to server')
 				}
 				catch (error) {
 					console.log(error)

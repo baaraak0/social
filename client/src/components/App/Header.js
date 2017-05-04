@@ -43,7 +43,7 @@ class Header extends React.Component {
 				</div>
 				<div className="selectuser pull-left">
 					<div className="btn-group pull-right">
-						<Link to={'/profile'}>My profile</Link>
+						{/*<Link to={'/profile'}>My profile</Link>*/}
 						<Link to={'/upload'}>Upload post</Link>
 						<Link to={'/logout'}>Logout</Link>
 					</div>

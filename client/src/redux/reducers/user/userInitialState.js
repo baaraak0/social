@@ -4,7 +4,11 @@ const globalInitialState = {
     token: null,
 	loggingAttempt: 0,
 	registrationError: null,
-	viewPostData: {}
+	viewPostData: {},
+	userCoords: {
+		latitude: null,
+		longitude: null
+	}
 };
 
 export default globalInitialState;

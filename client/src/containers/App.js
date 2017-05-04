@@ -30,6 +30,16 @@ class App extends React.Component {
 		super(props);
 		this.state = {}
 	}
+	
+	componentWillReceiveProps(newProps) {
+		if(newProps.user.userCoords.latitude !== null && newProps.user.userCoords.longitude !== null) {
+			const coords = {
+				latitude: newProps.user.userCoords.latitude,
+				longitude: newProps.user.userCoords.longitude
+			}
+			this.props.actions.setUserLocation(coords);
+		}
+	}
 
 	componentWillMount() {
 		if(Storage.getLocalStorage('jwt') !== null) {
