@@ -9,7 +9,7 @@ npm install
 npm start
 ```
 
-### Installing and run backend server
+### Install and run backend server
 ```
 cd ./client
 npm install
