@@ -3,87 +3,100 @@ var router = require('express').Router();
 var passport = require('passport');
 var User = mongoose.model('User');
 var auth = require('../auth');
+var regexTest = require('../../services/regexTest');
 
-router.get('/user', auth.required, function(req, res, next){
-  User.findById(req.payload.id).then(function(user){
-    if(!user){ return res.sendStatus(401); }
+/* GET :: /api/user - Get user profile */
+router.get('/user', auth.required, function (req, res, next) {
 
-    return res.json({user: user.toAuthJSON()});
-  }).catch(next);
+	User.findById(req.payload.id).then(function (user) {
+		if (!user) {
+			return res.sendStatus(401);
+		}
+
+		return res.json({user: user.toAuthJSON()});
+	}).catch(next);
 });
 
-router.put('/user', auth.required, function(req, res, next){
-  User.findById(req.payload.id).then(function(user){
-    if(!user){ return res.sendStatus(401); }
+/* PUT :: /api/user - Update user profile */
+router.put('/user', auth.required, function (req, res, next) {
+	User.findById(req.payload.id).then(function (user) {
+		if (!user) {
+			return res.sendStatus(401);
+		}
 
-    // only update fields that were actually passed...
-    if(typeof req.body.user.username !== 'undefined'){
-      user.username = req.body.user.username;
-    }
-    if(typeof req.body.user.email !== 'undefined'){
-      user.email = req.body.user.email;
-    }
-    if(typeof req.body.user.bio !== 'undefined'){
-      user.bio = req.body.user.bio;
-    }
-    if(typeof req.body.user.image !== 'undefined'){
-      user.image = req.body.user.image;
-    }
-    if(typeof req.body.user.password !== 'undefined'){
-      user.setPassword(req.body.user.password);
-    }
+		// only update fields that were actually passed...
+		if (typeof req.body.user.username !== 'undefined') {
+			user.username = req.body.user.username;
+		}
+		if (typeof req.body.user.email !== 'undefined') {
+			user.email = req.body.user.email;
+		}
+		if (typeof req.body.user.bio !== 'undefined') {
+			user.bio = req.body.user.bio;
+		}
+		if (typeof req.body.user.image !== 'undefined') {
+			user.image = req.body.user.image;
+		}
+		if (typeof req.body.user.password !== 'undefined') {
+			user.updatePassword(req.body.user.password);
+		}
 
-    return user.save().then(function(){
-      return res.json({user: user.toAuthJSON()});
-    });
-  }).catch(next);
+		return user.save().then(function () {
+			return res.json({user: user.toAuthJSON()});
+		});
+	}).catch(next);
 });
 
-router.post('/users/login', function(req, res, next){
-  if(!req.body.email){
-    return res.json({errors: {email: "can't be blank"}});
-  }
+/* POST :: /api/users/login - Login user */
+router.post('/users/login', function (req, res, next) {
+	// if (!regexTest.emailValidation(req.body.email)) {
+	// 	return res.json({errors: {email: "email validation error"}});
+	// }
+	//
+	// if (!regexTest.passwordValidation(req.body.password)) {
+	// 	return res.json({errors: {password: "password validation error"}});
+	// }
 
-  if(!req.body.password){
-    return res.json({errors: {password: "can't be blank"}});
-  }
+	passport.authenticate('local', {session: false}, function (err, user, info) {
+		if (err) {
+			return next(err);
+		}
 
-  passport.authenticate('local', {session: false}, function(err, user, info){
-    if(err){ return next(err); }
-
-    if(user){
-      user.token = user.generateJWT();
-      return res.json({user: user.toAuthJSON()});
-    } else {
-      return res.json(info);
-    }
-  })(req, res, next);
+		if (user) {
+			return res.json({user: user.toAuthJSON()});
+		} else {
+			return res.json(info);
+		}
+	})(req, res, next);
 });
 
-router.post('/users', function(req, res, next){
-  var user = new User();
+/* POST :: /api/users - Register new user */
+router.post('/users', function (req, res, next) {
+	var user = new User();
 
-  user.username = req.body.username;
-  user.email = req.body.email;
-  user.setPassword(req.body.password);
+	user.username = req.body.username;
+	user.email = req.body.email;
+	user.password = req.body.password;
 
-  user.save().then(function(){
-    return res.json({user: user.toAuthJSON()});
-  }).catch(next);
+	user.save().then(function () {
+		return res.json({user: user.toAuthJSON()});
+	}).catch(next);
 });
 
-router.post('/users/setCoords', auth.required, function(req, res, next){
-	User.findById(req.payload.id).then(function(user){
-		if(!user){ return res.sendStatus(401); }
+router.post('/users/setCoords', auth.required, function (req, res, next) {
+	User.findById(req.payload.id).then(function (user) {
+		if (!user) {
+			return res.sendStatus(401);
+		}
 
-		if(typeof req.body.latitude !== 'undefined' && typeof req.body.longitude !== 'undefined'){
+		if (typeof req.body.latitude !== 'undefined' && typeof req.body.longitude !== 'undefined') {
 			user.location = {
 				latitude: req.body.latitude,
-                longitude: req.body.longitude
+				longitude: req.body.longitude
 			};
 		}
 
-		return user.save().then(function(){
+		return user.save().then(function () {
 			return res.json({user: user.toAuthJSON()});
 		});
 	}).catch(next);

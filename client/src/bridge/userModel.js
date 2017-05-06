@@ -20,7 +20,8 @@ export default class userModel {
                     reject(error)
                 }
 
-            }).catch(() => {
+            }).catch((err) => {
+				console.log(err)
                 reject({success: false});
             });
         });

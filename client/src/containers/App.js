@@ -37,7 +37,7 @@ class App extends React.Component {
 				latitude: newProps.user.userCoords.latitude,
 				longitude: newProps.user.userCoords.longitude
 			}
-			this.props.actions.setUserLocation(coords);
+			// this.props.actions.setUserLocation(coords);
 		}
 	}
 
