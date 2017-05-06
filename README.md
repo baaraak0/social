@@ -1,6 +1,5 @@
 # Social
 
-One Paragraph of project description goes here
 
 ### Install and run front end
 ```
