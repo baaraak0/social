@@ -1,0 +1,242 @@
+@footer_indent: @indent--sm;
+.form {
+  &--default {
+    padding: @indent--lg @indent--lg @footer_indent;
+  }
+
+  &__row {
+    margin-left: -@form_gutter / 2 !important;
+    margin-right: -@form_gutter /2 !important;
+    .clearfix;
+  }
+
+  &__col {
+    float: left;
+    padding-left: (@form_gutter/2);
+    padding-right: (@form_gutter/2);
+  }
+
+  // TODO use loop
+  &__col--4 {
+    width: 42%;
+  }
+
+  &__col--8 {
+    width: 58%;
+  }
+  &__col--6 {
+    width: 50%;
+  }
+  // end of "use loop" instruction
+
+  &__group {
+    border: none;
+    margin: 0 0 @indent--lg 0;
+    padding: 0;
+  }
+
+  &__element {
+    position: relative;
+    margin-bottom: @indent--lg;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &--mb-x2 {
+      margin-bottom: @indent--md* 2 !important;
+    }
+  }
+
+  &__footer {
+    padding-left: (@form_gutter/2);
+    padding-right: (@form_gutter/2);
+  }
+
+  &__control {
+    position: relative;
+    z-index: 1;
+    display: block;
+    line-height: 1;
+    vertical-align: middle;
+    width: 100%;
+    padding: (@indent--xs * 2) 0;
+    border: none;
+    border-bottom: 1px solid @border_color;
+    border-radius: 0;
+    background-color: transparent;
+    color: @primary;
+    font-size: 1em;
+    font-weight: 300;
+    outline: none;
+    .clearInputIcon;
+
+    &::-webkit-input-placeholder {
+      color: @form_placeholder;
+    }
+    &::-moz-placeholder { /* Firefox 19+ */
+      color: @form_placeholder;
+    }
+    &:-moz-placeholder { /* Firefox 18- */
+      color: @form_placeholder;
+    }
+    &:-ms-input-placeholder {
+      color: @form_placeholder;
+    }
+  }
+
+  &__error-msg {
+    display: block;
+    text-align: right;
+    vertical-align: middle;
+    line-height: 1;
+    margin-top: 3px;
+    font-size: 10px; // html {font-size:10px;}
+    color: @form_error;
+
+    transition: all 300ms linear;
+
+    &--nowrap {
+      white-space: nowrap;
+    }
+
+    &--absolute {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      z-index: 9;
+    }
+
+    .fa {
+      font-size: 1em;
+      margin-left: 3px;
+    }
+  }
+
+}
+
+.legend {
+  display: block;
+  margin-bottom: @legend_indent;
+  font-weight: 500;
+  text-transform: capitalize;
+  padding: 0;
+}
+
+.label {
+  display: block;
+  transition: all 100ms linear;
+  color: @form_placeholder;
+  position: absolute;
+  z-index: 1;
+
+  top: @FONT_SIZE + 0px;
+  &--default {
+    margin-top: -(@FONT_SIZE / 2) + 4px;
+
+  }
+
+  &--secondary {
+    margin-top: 2px;
+  }
+
+  &--addon {
+    padding-left: @indent--lg;
+  }
+
+  &--transition {
+    top: 0;
+    margin-top: -(@FONT_SIZE / 2) - 5px;
+    padding-left: 0;
+    .fontSizePxToEm(@FONT_SIZE, 14);
+  }
+
+}
+
+.select {
+  position: relative;
+  z-index: 11;
+  padding-right: @indent--md;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  &--addon {
+    padding-left: @indent--lg !important;
+  }
+
+  option {
+    background: @option_bgc;
+    border: none;
+    padding: @indent--xs 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+}
+
+.input {
+
+  &--large {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  &--addon-tip {
+    padding-right: (@indent--xs * 4);
+  }
+
+  &--amount {
+    padding-left: @indent--sm;
+  }
+
+}
+
+.addon {
+  position: absolute;
+  z-index: @z_addon;
+
+  top: @FONT_SIZE + 0px;
+  margin-top: -(@FONT_SIZE / 2) - 1px;
+
+  &--icon {
+    left: 0;
+    font-size: 25px;
+  }
+
+  &--tip {
+    font-size: 20px;
+    margin-top: -7px !important;
+    right: 0;
+    color: @form_placeholder;
+  }
+
+  &--flag {
+    border-radius: 4px;
+    overflow: hidden;
+    background: #fff;
+    width: 100%;
+    max-width: 30px;
+    height: 100%;
+    max-height: 22px;
+  }
+
+  &--select {
+    right: 10px;
+    margin-top: -7px;
+  }
+
+  &--currency {
+    left: 0;
+    z-index: 1;
+    font-size: 1em;
+    display: inline-block;
+    vertical-align: top;
+    margin-top: -(@FONT_SIZE / 2) + 3px;
+  }
+
+}

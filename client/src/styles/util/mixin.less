@@ -1,0 +1,127 @@
+.clearInputIcon() {
+  &::-ms-clear {
+    display: none;
+  }
+  &::-ms-reveal {
+    display: none;
+  }
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    display: none;
+  }
+}
+
+.inputPlaceholder(@root) {
+  &::-webkit-input-placeholder {
+    @root();
+  }
+  &::-moz-placeholder { /* Firefox 19+ */
+    @root();
+  }
+  &:-moz-placeholder { /* Firefox 18- */
+    @root();
+  }
+  &:-ms-input-placeholder {
+    @root();
+  }
+}
+
+.mediaUp(@breakpoint, @rules) {
+
+  // iphone 4, 5
+  & when (@breakpoint = 320) {
+    @media (min-width: @xs) {
+      @rules();
+    }
+  }
+  // galaxy s5
+  & when (@breakpoint = 360) {
+    @media (min-width: @sm) {
+      @rules();
+    }
+  }
+
+  // iphone 6
+  & when (@breakpoint = 375) {
+    @media (min-width: @md) {
+      @rules();
+    }
+  }
+
+  // iphone 6 plus
+  & when (@breakpoint = 414) {
+    @media (min-width: @lg) {
+      @rules();
+    }
+  }
+
+}
+
+.clearfix() {
+  &:before,
+  &:after {
+    content: '';
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+.verticalMiddle() {
+  top: 50%;
+  transform: translate(0, -49%);
+}
+
+.absoluteCenter() {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.addonVerticalAlign(@font-size) {
+  top: 50%;
+  margin-top: -(@font-size/1.75);
+  line-height: 1;
+}
+
+.button {
+  &::-moz-focus-inner {
+    padding: 0 !important;
+    border: 0 none !important;
+  }
+}
+
+.link() {
+  color: inherit;
+}
+
+/* .fontSizePxToEm  mixin to do the PX to EM conversion
+// @base-size - parent font size.
+// @@context-size - current element font size
+*/
+//
+.fontSizePxToEm( @base-size: @base-size, @context-size: @context-size ) {
+  font-size: ( @context-size / @base-size) + 0em;
+}
+//
+/* usage example:
+// .fontSizePxToEm(16, 14); // 0.875px
+// .fontSizePxEm(@FONT_SIZE, 14);
+// .fontSizePxEm(@MODAL_SIZE, 16);
+*/
+
+.list-reset() {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+/* screens height
+//
+*/

@@ -113,11 +113,12 @@ module.exports = {
 					/\.svg$/,
 					/\.sass$/,
 					/\.scss$/,
+					/\.less$/,
 				],
 				loader: 'url',
 				query: {
 					limit: 10000,
-					name: 'static/media/[name].[hash:8].[ext]'
+					name: 'static/media/[name].[ext]'
 				}
 			},
 			// Process JS with Babel.
@@ -160,6 +161,11 @@ module.exports = {
 				test: /\.scss$/,
 				include: paths.appSrc,
 				loaders: ["style", "css", "sass"]
+			},
+			{
+				test: /\.less$/,
+				include: paths.appSrc,
+				loaders: ["style", "css", "less"]
 			},
 		]
 	},

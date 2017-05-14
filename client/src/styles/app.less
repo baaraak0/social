@@ -1,0 +1,62 @@
+//iPhone 5, iPhone 4
+@media only screen  
+and (max-device-width: 320)
+{
+    body {
+        font-size: 12px;
+    }
+}
+
+//iPhone 6, Nexus 6P, Nexus 5X, Galaxy S5
+@media only screen  
+and (min-device-width: 360)
+and (max-device-width: 413)
+{
+    body {
+        font-size: 15px;
+    }
+}
+
+//iPhone 6 plus
+@media only screen  
+and (min-device-width: 414)
+{
+    body {
+        font-size: 15px;
+    }
+}
+
+//ipad
+@media only screen  
+and (min-device-width: 768)
+{
+    body {
+        font-size: 22px;
+    }
+}
+
+//iPad Pro
+@media only screen  
+and (min-device-width: 768)
+{
+    body {
+        font-size: 29px;
+    }
+}
+// base font
+body {
+    // app fonts are between 12px <-> 25px 
+    // all across app in % from follwing base,
+    // meaning max % allows is 208.33% 
+    font-size: 12px;
+}
+
+//disable ::focus outline effect of inputs
+:focus { outline: none; }
+
+.spinner {
+    position: absolute;
+    top: 50%;  /* position the top  edge of the element at the middle of the parent */
+    left: 50%; /* position the left edge of the element at the middle of the parent */
+    transform: translate(-50%, -50%);
+}

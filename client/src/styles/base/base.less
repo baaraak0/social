@@ -1,0 +1,58 @@
+* {
+  box-sizing: border-box;
+}
+
+
+html,
+body,
+[data-reactroot],
+#root {
+  height: 100%;
+}
+
+html {
+  font-size: 10px;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+body {  
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1; // reset for pixel perfect
+
+  color: @text_primary;
+}
+
+
+.screen {
+  height: 100%;
+  min-height: 100%;
+  min-height: 100vh; // fix for modern browsers
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; // iOS scroll fix  
+}
+
+button,
+a,
+input,
+select {
+  color: inherit;
+  font-family: inherit;
+}
+
+/* reset border radius for iPhone */
+input {
+  border-radius: 0;
+}
+
+/* fix content to top for iPhone */
+.main-div__keyboard .dataContainer {
+  display: block;
+}

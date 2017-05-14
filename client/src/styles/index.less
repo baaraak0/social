@@ -1,0 +1,45 @@
+/* UTIl
+//
+// The util/ folder gathers all less tools and helpers we’ll use across the project. Got a function? A mixin?
+// Put it in there. This folder also contains a var.less file (sometimes config.less) which holds all global variables
+// for the project (for typography, color schemes, and so on)
+*/
+
+@import "util/var";
+@import "util/reset";
+@import "util/mixin";
+@import "util/helpers";
+
+/* BASE
+//
+// The base/ folder holds what we might call the boilerplate stuff for your project. In there, you might find the reset
+// (or Normalize.css, or whatever), probably some stuff dealing with typography, and, depending on the project, maybe
+// some other files.
+*/
+@import "base/base";
+@import "base/typo";
+@import "base/animation";
+
+/* LAYOUT
+//
+// The layout/ directory (sometimes called partials/) usually contains a number of files, each of them setting some
+// styles for the main sections of the layout (header, footer, and so on).
+*/
+@import "layout/btn";
+@import "layout/form";
+
+/* COMPONENT
+//
+// For smaller components, there is the components/ folder (frequently called modules/). While layout/ is kind of macro
+// (defining the global wireframe), components/ is more micro. It can contain all kinds of specific modules
+// like a slider, a loader, a widget, or anything along those lines. There are usually a lot of files in components/
+// since your site is should be mostly composed of tiny modules.
+*/
+
+
+/* SCREENS
+//
+// If you have screen-specific styles, I think it’s cool to put them in a screen/ folder and in a file named after
+// the screen. For example, it’s not uncommon to have very specific styles for the "Deposit screen", so you’d have
+// a deposit.less file in screen/ dealing with this.
+*/

@@ -8,17 +8,13 @@ import configureStore from './redux/reducers/configureStore.js';
 import globalInitialState from './redux/reducers/global/globalInitialState.js';
 import userInitialState from './redux/reducers/user/userInitialState.js';
 
-import './styles/styles.scss';
-
 import App from './containers/App';
-import Main from './containers/Main';
-import Login from './containers/Login';
-import Register from './containers/Register';
-import Upload from './containers/Upload';
-import ViewPost from './containers/ViewPost';
-import Logout from './containers/Logout.js';
-import Nomatch from './containers/Nomatch';
-
+import Main from './modules/localFeed/Main';
+import Login from './modules/login/Login';
+import Register from './modules/registration/Register';
+import Upload from './modules/post/createPost/Upload';
+import ViewPost from './modules/post/viewPost/ViewPost';
+import Nomatch from './modules/noMatchPage/Nomatch';
 
 function getInitialState() {
   const _initState = {
@@ -38,7 +34,6 @@ ReactDOM.render(
         <Route path='/login' component={Login} />
         <Route path='/register' component={Register} />
         <Route path='/upload' component={Upload} />
-        <Route path='/logout' component={Logout} />
         <Route path='/view/:slug' component={ViewPost} />
         <Route path='*' component={Nomatch} />
       </Route>
